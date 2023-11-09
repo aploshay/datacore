@@ -35,8 +35,12 @@ module Hyrax
     end
 
     def parent_doi_minted?
+      if parent
       g = DataSet.find parent.id
       g.doi_minted?
+      else
+        false
+      end
     end
 
     # begin display_provenance_log
