@@ -59,6 +59,6 @@ class ArchiveController < ApplicationController
 
   private
     def archive_url_for(collection, object, version: 1)
-      Settings.archive_api.show % [collection, object, version]
+      Settings.archive_api.url % [collection, object, version]
     end
 end

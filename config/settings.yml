@@ -97,7 +97,7 @@ rails:
     adapter: async
 
 archive_api:
-  show: ''
+  url: archive.url.invalid/%s/%s
   username: archiveusername.invalid
   password: archivepassword.invalid
 
