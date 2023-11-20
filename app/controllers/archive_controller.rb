@@ -13,7 +13,7 @@ class ArchiveController < ApplicationController
 
   def request_file
     handle_file_request(string: archive_url_for(params[:collection], params[:object]),
-                        filename: params[:object])
+                        filename: "#{params[:object]}.#{params[:format]}")
   end
 
   def request_factory(method)
@@ -48,12 +48,11 @@ class ArchiveController < ApplicationController
 
   def handle_file_request(string: "http://localhost:8181/datacore/nv9352841_home_banner.jpg", filename: "home_banner.jpg", code: nil)
     result = file_request(string: string, filename: filename)
-    code = result.try(:code) || 'No response from file archiver service'
-    case code
-      when '200'
-        send_data result.body, filename: filename
-      else
-        failed_file_request(filename: filename, code: code)
+    code = result.try(:code) || 'No response from file archives service'
+    if code.to_s == '200'
+      send_data result.body, filename: filename
+    else
+      failed_file_request(filename: filename, code: code.to_s)
     end
   end
 
@@ -62,11 +61,11 @@ class ArchiveController < ApplicationController
     destination = file_set ? [main_app, file_set] : main_app.root_url
     case code
       when '503'
-        redirect_to destination, notice: 'File found in archives and requested for download'
+        redirect_to destination, notice: 'File found in file archives service and requested for download.  Please retry in 15 minutes, but note that the time required to retrieve files from the tape archive is variable.'
       when '404'
-        redirect_to destination, alert: 'File not found in archives'
+        redirect_to destination, alert: 'File not found in file archives service.  Unable to download.'
       else
-        redirect_to destination, alert: "Unexpected response from archives: #{code}"
+        redirect_to destination, alert: "Unexpected outcome: #{code}"
     end
   end
 
