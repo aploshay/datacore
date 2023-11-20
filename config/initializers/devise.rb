@@ -264,10 +264,10 @@ Devise.setup do |config|
 
   # IU AUTH ONLY
   config.omniauth :cas,
-                  :host => 'cas.iu.edu',
-                  :login_url => '/cas/login',
-                  :service_validate_url => '/cas/serviceValidate',
-                  :logout_url => '/cas/logout',
+                  :host => 'idp-stg.login.iu.edu',
+                  :login_url => '/idp/profile/cas/login',
+                  :service_validate_url => ' /idp/profile/cas/serviceValidate',
+                  :logout_url => '/idp/profile/cas/logout',
                   :ssl => true
 
   # ==> Warden configuration
