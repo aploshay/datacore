@@ -58,7 +58,8 @@ class ArchiveController < ApplicationController
   end
 
   private
-    def archive_url_for(collection, object, version: 1)
-      Settings.archive_api.url % [collection, object, version]
+    # TODO: add version support?
+    def archive_url_for(collection, object)
+      Settings.archive_api.url % [collection, object]
     end
 end
