@@ -6,6 +6,8 @@ require 'rspec/its'
 require 'rspec/matchers'
 require 'rspec/active_model/mocks'
 require 'rspec/retry'
+require 'simplecov'
+SimpleCov.start 'rails'
 
 # class JsonStrategy
 #   def initialize
