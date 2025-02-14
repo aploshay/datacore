@@ -3,10 +3,10 @@
 
 source 'https://rubygems.org'
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
+gem "posix-spawn", github: "https://github.com/rtomayko/posix-spawn/pull/93"
+
+gem "libxml-ruby", path: "vendor/bundle/ruby/2.7.0/gems/libxml-ruby-3.1.0"
+
 
 gem 'hyrax', '~>2.9'
 
