@@ -135,7 +135,8 @@ group :development, :test do
   gem 'solr_wrapper', '~> 2.1.0'
 end
 
-gem 'willow_sword', github: 'notch8/willow_sword'
+# gem 'willow_sword', github: 'notch8/willow_sword'
+gem 'willow_sword', github: 'notch8/willow_sword', ref: '0a669d7' # deprecate willow_sword in bulkrax 5 upgrade
 
 gem 'dotenv-rails'
 gem 'recaptcha'
