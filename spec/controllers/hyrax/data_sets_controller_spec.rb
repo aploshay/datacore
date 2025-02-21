@@ -35,4 +35,22 @@ RSpec.describe Hyrax::DataSetsController do # rubocop:disable RSpec/EmptyExample
     # end
   end
 
+  # always redirect, always flash notice
+  describe "#doi" do
+    context "when minting is in progress" do
+      it "redirects to the work"
+      it "flashes a notice"
+    end
+    context "when minting is already done" do
+    end
+    context "when not yet minted" do
+      context "but no files are present" do
+      end
+      context "but user lacks rights" do
+      end
+      context "and user has rights" do
+        it "starts minting"
+      end
+    end
+  end
 end

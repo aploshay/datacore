@@ -662,4 +662,15 @@ RSpec.describe DataSet do
     expect( rv_key_values.size ).to eq size
   end
 
+  describe "#doi_mint" do
+    context "when minting is in progress" do
+      it "returns false"
+    end
+    context "when already minted" do
+      it "returns false"
+    end
+    context "when no doi yet" do
+      it "calls DoiMintingJob"
+    end
+  end
 end
