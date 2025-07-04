@@ -13,7 +13,7 @@ module Hyrax
     end
 
     def doi_minting_enabled?
-      false
+      ::Deepblue::DoiMintingService.enabled?
     end
 
     def globus_download_enabled?

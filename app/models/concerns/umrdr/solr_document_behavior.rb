@@ -67,7 +67,7 @@ module Umrdr
     end
 
     def doi_minting_enabled?
-      ::Deepblue::DoiBehavior::DOI_MINTING_ENABLED
+      ::Deepblue::DoiMintingService.enabled?
     end
 
     def doi_pending?

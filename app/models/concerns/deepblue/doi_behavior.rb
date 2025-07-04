@@ -12,13 +12,11 @@ module Deepblue
     DOI_MINIMUM_FILE_COUNT = 1
 
     def doi_minted?
-      !doi.nil?
-    rescue
-      nil
+      doi.present? && !doi_pending?
     end
 
     def doi_minting_enabled?
-      ::Deepblue::DoiBehavior::DOI_MINTING_ENABLED
+      ::Deepblue::DoiMintingService.enabled?
     end
 
     def doi_pending?

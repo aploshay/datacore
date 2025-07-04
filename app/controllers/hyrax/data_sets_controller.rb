@@ -109,7 +109,7 @@ module Hyrax
     end
 
     def doi_minting_enabled?
-      ::Deepblue::DoiBehavior::DOI_MINTING_ENABLED
+      ::Deepblue::DoiMintingService.enabled?
     end
 
     def doi_mint
@@ -126,6 +126,8 @@ module Hyrax
         flash[:notice] = MsgHelper.t( 'data_set.doi_user_without_access' )
       elsif curation_concern.doi_mint( current_user: current_user, event_note: 'DataSetsController' )
         flash[:notice] = MsgHelper.t( 'data_set.doi_minting_started' )
+      else
+        # FIXME: log failure, flash result
       end
     end
 
