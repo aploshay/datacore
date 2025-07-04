@@ -24,10 +24,6 @@ module Hyrax
       false
     end
 
-    # def mint_doi_enabled?
-    #   false
-    # end
-
     def tombstone_enabled?
       false
     end

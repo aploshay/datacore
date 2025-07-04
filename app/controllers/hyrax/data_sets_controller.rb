@@ -97,7 +97,8 @@ module Hyrax
     ## DOI
 
     def doi
-      doi_mint
+      doi_mint!
+
       respond_to do |wants|
         wants.html { redirect_to [main_app, curation_concern] }
         wants.json do
@@ -108,32 +109,24 @@ module Hyrax
       end
     end
 
-    def doi_minting_enabled?
-      ::Deepblue::DoiMintingService.enabled?
-    end
-
-    def doi_mint
-      # Do not mint doi if
-      #   one already exists
-      #   work file_set count is 0.
-      if curation_concern.doi_pending?
-        flash[:notice] = MsgHelper.t( 'data_set.doi_is_being_minted' )
+    # FIXME: change notices to warnings, errors?
+    def doi_mint!
+      if !doi_minting_enabled?
+        # FIXME: log
+      elsif curation_concern.doi_pending?
+        flash[:notice] = MsgHelper.t('data_set.doi_is_being_minted')
       elsif curation_concern.doi_minted?
-        flash[:notice] = MsgHelper.t( 'data_set.doi_already_exists' )
-      elsif curation_concern.file_sets.count < 1
-        flash[:notice] = MsgHelper.t( 'data_set.doi_requires_work_with_files' )
-      elsif ( curation_concern.depositor != current_user.email ) && !current_ability.admin?
-        flash[:notice] = MsgHelper.t( 'data_set.doi_user_without_access' )
-      elsif curation_concern.doi_mint( current_user: current_user, event_note: 'DataSetsController' )
-        flash[:notice] = MsgHelper.t( 'data_set.doi_minting_started' )
+        flash[:notice] = MsgHelper.t('data_set.doi_already_exists')
+      elsif !curation_concern.doi_minimum_files?
+        flash[:notice] = MsgHelper.t('data_set.doi_requires_work_with_files')
+      elsif (curation_concern.depositor != current_user.email) && !current_ability.admin?
+        flash[:notice] = MsgHelper.t('data_set.doi_user_without_access')
+      elsif curation_concern.doi_mint(current_user: current_user, event_note: 'DataSetsController')
+        flash[:notice] = MsgHelper.t('data_set.doi_minting_started')
       else
         # FIXME: log failure, flash result
       end
     end
-
-    # def mint_doi_enabled?
-    #   true
-    # end
 
     ## end DOI
 
