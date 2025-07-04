@@ -47,28 +47,6 @@ module Hyrax
               :type_none,
               to: :solr_document
 
-    # def initialize( solr_document, current_ability, request = nil )
-    #   ::Deepblue::LoggingHelper.bold_debug [ Deepblue::LoggingHelper.here,
-    #                                          Deepblue::LoggingHelper.called_from,
-    #                                          Deepblue::LoggingHelper.obj_class( 'class', self ),
-    #                                          "solr_document = #{solr_document}",
-    #                                          "solr_document.class.name = #{solr_document.class.name}",
-    #                                          "current_ability = #{current_ability}",
-    #                                          "request = #{request}",
-    #                                          "" ]
-    #   super( solr_document, current_ability, request )
-    #   ::Deepblue::LoggingHelper.bold_debug [ Deepblue::LoggingHelper.here,
-    #                                          Deepblue::LoggingHelper.called_from,
-    #                                          Deepblue::LoggingHelper.obj_class( 'class', self ),
-    #                                          "@solr_document.class.name = #{@solr_document.class.name}",
-    #                                          "@solr_document.doi = #{@solr_document.doi}",
-    #                                          "@solr_document.doi_the_correct_one = #{@solr_document.doi_the_correct_one}",
-    #                                          "@solr_document.doi_minted? = #{@solr_document.doi_minted?}",
-    #                                          "@solr_document.doi_minting_enabled? = #{@solr_document.doi_minting_enabled?}",
-    #                                          "@solr_document.doi_pending? = #{@solr_document.doi_pending?}",
-    #                                          "" ]
-    # end
-
     # begin box
 
     def box_enabled?
@@ -112,30 +90,6 @@ module Hyrax
     end
 
     # end display_provenance_log
-
-    # begin doi
-    #
-    # def doi
-    #   solr_value = @solr_document[Solrizer.solr_name('doi', :symbol)]
-    #   return nil if solr_value.blank?
-    #   solr_value.first
-    # end
-    #
-    # def doi_minted?
-    #   !doi.nil?
-    # rescue
-    #   nil
-    # end
-    #
-    # def doi_pending?
-    #   doi == ::Deepblue::DoiBehavior::DOI_PENDING
-    # end
-    #
-    # def mint_doi_enabled?
-    #   true
-    # end
-    #
-    # end doi
 
     # begin globus
 
