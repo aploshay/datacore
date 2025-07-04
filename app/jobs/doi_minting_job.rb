@@ -32,17 +32,17 @@ class DoiMintingJob < ::Hyrax::ApplicationJob
     Deepblue::LoggingHelper.bold_debug [ Deepblue::LoggingHelper.here,
                                          Deepblue::LoggingHelper.called_from,
                                          "work.id=#{id}",
-                                         "user.email=#{user.email}",
+                                         "current_user=#{current_user}",
                                          "Starting..." ]
-    # Rails.logger.debug "DoiMintingJob work id #{id} #{user.email} starting..."
+    # Rails.logger.debug "DoiMintingJob work id #{id} #{current_user} starting..."
     if Deepblue::DoiMintingService.mint_doi_for( work: work, current_user: current_user )
-      Rails.logger.debug "DoiMintingJob work id #{id} #{user.email} succeeded."
+      Rails.logger.debug "DoiMintingJob work id #{id} #{current_user} succeeded."
       # do success callback
       if Hyrax.config.callback.set?( :after_doi_success )
         Hyrax.config.callback.run( :after_doi_success, work, user, log.created_at )
       end
     else
-      Rails.logger.debug "DoiMintingJob work id #{id} #{user.email} failed."
+      Rails.logger.debug "DoiMintingJob work id #{id} #{current_user} failed."
       # do failure callback
       if Hyrax.config.callback.set?( :after_doi_failure )
         Hyrax.config.callback.run( :after_doi_failure, work, user, log.created_at )
