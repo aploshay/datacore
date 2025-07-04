@@ -66,10 +66,6 @@ module Umrdr
       nil
     end
 
-    def doi_minting_enabled?
-      ::Deepblue::DoiMintingService.enabled?
-    end
-
     def doi_pending?
       #@solr_document[ Solrizer.solr_name( 'doi', :symbol ) ].first == ::Deepblue::DoiBehavior::DOI_PENDING
       doi_the_correct_one == ::Deepblue::DoiBehavior::DOI_PENDING

@@ -11,7 +11,6 @@ module Hyrax
               :date_published, :date_published2, # FIXME; investigate
               :doi, :doi_the_correct_one, # FIXME: investigate
               :doi_minted?,
-              :doi_minting_enabled?,
               :doi_pending?,
               :fundedby,
               :fundedby_other,
