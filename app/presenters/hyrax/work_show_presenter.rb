@@ -8,7 +8,7 @@ module Hyrax
 
   class WorkShowPresenter
     # FIXME: check whether fileset presenter should be using this class for parent?
-    delegate :doi, :doi_the_correct_one, # FIXME: investigate
+    delegate :doi,
              :doi_minted?,
              :doi_pending?, to: :solr_document
 
